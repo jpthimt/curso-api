@@ -2,18 +2,19 @@ package com.curso.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "curso_teste")
-public class Curso {
+@Table(name = "curso")
+public class Curso implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +35,7 @@ public class Curso {
     @Column(name = "data_de_atualizao")
     private LocalDateTime dataDeAtualizacao;
 
-    @NotNull
+    @NotBlank
     private String usuario;
 
     @Transient
@@ -54,6 +55,7 @@ public class Curso {
     }
 
     public Curso() {
+        this.valorDoCurso = new BigDecimal(0);
     }
 
     public Curso(String nome, String area) {

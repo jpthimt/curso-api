@@ -2,8 +2,11 @@ package com.curso.api.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-public class Aluno {
+@Table(name = "aluno")
+public class Aluno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
